@@ -1,7 +1,30 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useContext } from "react";
 import registerLottie from "../assets/Lottie-animation/register.json";
+import { AuthContext } from "../Context/AuthContext";
 const Register = () => {
+  const { createNewUser } = useContext(AuthContext);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+
+    const regularExpression = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+    if (regularExpression.test(password)) {
+      createNewUser(email, password)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } else {
+      alert(
+        "password must be 6 character long , one uppercase latter and one lowercase latter"
+      );
+    }
+  };
+
   return (
     <div>
       <div>
@@ -10,18 +33,26 @@ const Register = () => {
             <div className="bg-base-100 shadow-2xl w-md">
               <div className="card-body">
                 <h1 className="text-3xl ">Register Here</h1>
-                <form action="">
+                <form onSubmit={handleRegister}>
                   <fieldset className="fieldset">
                     <label className="label">Email</label>
-                    <input type="email" className="input" placeholder="Email" />
+                    <input
+                      type="email"
+                      className="input"
+                      placeholder="Email"
+                      name="email"
+                    />
                     <label className="label">Password</label>
                     <input
                       type="password"
                       className="input"
                       placeholder="Password"
+                      name="password"
                     />
 
-                    <button className="btn btn-neutral mt-4">Register</button>
+                    <button type="submit" className="btn btn-neutral mt-4">
+                      Register
+                    </button>
                   </fieldset>
                 </form>
               </div>
