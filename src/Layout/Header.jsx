@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
 
 const Header = () => {
+  const { user, logoutUser } = useContext(AuthContext);
   const menu = (
     <>
       <li>
@@ -44,7 +46,19 @@ const Header = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{menu}</ul>
+          <ul className="menu menu-horizontal px-1">
+            {!user ? (
+              menu
+            ) : (
+              <>
+                <div className="navbar-end">
+                  <button onClick={logoutUser} className="btn">
+                    Logout
+                  </button>
+                </div>
+              </>
+            )}
+          </ul>
         </div>
         <div className="navbar-end">
           <a className="btn">Button</a>
