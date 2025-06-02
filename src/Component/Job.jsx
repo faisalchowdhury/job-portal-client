@@ -2,15 +2,8 @@ import React from "react";
 import { Link } from "react-router";
 
 const Job = ({ job }) => {
-  const {
-    _id,
-    title,
-    description,
-    company,
-    company_logo,
-    location,
-    requirements,
-  } = job;
+  const { title, description, company, company_logo, location, requirements } =
+    job;
   return (
     <div>
       <div className="card bg-base-100  shadow-sm p-5 space-y-3 h-[400px]">
@@ -37,7 +30,7 @@ const Job = ({ job }) => {
             ))}
           </div>
           <div className="card-actions justify-end">
-            <Link to={`/jobs/${_id}`}>
+            <Link to={`/jobs/${job._id}`}>
               <button className="btn bg-green-900 text-white hover:bg-black">
                 Apply Now
               </button>
