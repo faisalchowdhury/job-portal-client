@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import React from "react";
 
-const SocialLogin = () => {
-  const { socialLogin } = useContext(AuthContext);
+import { useNavigate } from "react-router";
+import useAuth from "../Hooks/useAuth";
 
+const SocialLogin = ({ from }) => {
+  const { socialLogin } = useAuth();
+  const navigate = useNavigate();
   const handleSocialLogin = () => {
     socialLogin()
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        navigate(from);
+      })
       .catch((err) => console.log(err));
   };
   return (

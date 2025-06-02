@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router";
-import { AuthContext } from "../Context/AuthContext";
+import useAuth from "../Hooks/useAuth";
 
 const Header = () => {
-  const { user, logoutUser } = useContext(AuthContext);
+  const { user, logoutUser } = useAuth();
   const menu = (
     <>
       <li>
@@ -55,6 +55,9 @@ const Header = () => {
                   <button onClick={logoutUser} className="btn">
                     Logout
                   </button>
+                  <li>
+                    <NavLink to={"/my-application"}>My Application</NavLink>
+                  </li>
                 </div>
               </>
             )}

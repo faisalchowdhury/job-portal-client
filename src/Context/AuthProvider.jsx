@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AuthContext } from "./AuthContext";
+
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -9,9 +9,11 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
+import { AuthContext } from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // User Registration
   const createNewUser = (email, password) => {
@@ -28,6 +30,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
 
     return () => {
@@ -52,6 +55,7 @@ const AuthProvider = ({ children }) => {
     logoutUser,
     user,
     socialLogin,
+    loading,
   };
   return <AuthContext value={userinfo}>{children}</AuthContext>;
 };

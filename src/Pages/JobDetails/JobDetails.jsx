@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router";
 
 const JobDetails = () => {
   const {
+    _id,
     company_logo,
     location,
     company,
@@ -53,7 +54,7 @@ const JobDetails = () => {
             ))}
           </div>
           <div className="">
-            <Link to={`/jobs/`}>
+            <Link to={`/apply-job/${_id}`}>
               <button className="btn btn-xl w-full bg-green-900 text-white hover:bg-black">
                 Apply Now
               </button>
