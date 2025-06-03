@@ -58,6 +58,9 @@ const Header = () => {
                   <li>
                     <NavLink to={"/my-application"}>My Application</NavLink>
                   </li>
+                  <li>
+                    <NavLink to={"/add-jobs"}>Add Jobs</NavLink>
+                  </li>
                 </div>
               </>
             )}
