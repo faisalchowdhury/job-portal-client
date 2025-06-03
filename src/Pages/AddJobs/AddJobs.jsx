@@ -1,5 +1,7 @@
 import React from "react";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const AddJobs = () => {
   const { user } = useAuth();
@@ -24,6 +26,25 @@ const AddJobs = () => {
     restFormData.responsibilities = restFormData.responsibilities
       .split(",")
       .map((responsible) => responsible.trim());
+
+    // Status
+    restFormData.status = "active";
+
+    axios
+      .post("http://localhost:3000/jobs", restFormData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Job has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          console.log(res.data);
+        }
+      })
+      .catch((err) => console.log(err));
 
     console.log(restFormData);
   };

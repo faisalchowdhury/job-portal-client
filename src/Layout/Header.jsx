@@ -61,6 +61,9 @@ const Header = () => {
                   <li>
                     <NavLink to={"/add-jobs"}>Add Jobs</NavLink>
                   </li>
+                  <li>
+                    <NavLink to={"/my-jobs"}>My Posted Jobs</NavLink>
+                  </li>
                 </div>
               </>
             )}
