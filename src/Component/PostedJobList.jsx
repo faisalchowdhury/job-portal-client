@@ -24,15 +24,18 @@ const PostedJobList = ({ myPostJobsPromise }) => {
             <tbody>
               {/* rows */}
               {data.map((list, i) => (
-                <tr className="bg-base-200">
+                <tr key={list._id} className="bg-base-200">
                   <th>{i + 1}</th>
                   <td>{list.company}</td>
                   <td>{list.title}</td>
                   <td>{list.applicationDeadline}</td>
                   <td>{list.count}</td>
-                  <Link to={`/applications/${list._id}`}>
-                    <td>View Application</td>
-                  </Link>
+
+                  <td>
+                    <Link to={`/applications/${list._id}`}>
+                      View Application
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
